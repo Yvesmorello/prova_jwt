@@ -5,6 +5,7 @@ import com.atividade.prova_jwt.dto.TokenDTO;
 import com.atividade.prova_jwt.dto.UserDTO;
 import com.atividade.prova_jwt.model.User;
 import com.atividade.prova_jwt.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,11 +31,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDTO> register(@RequestBody AuthDTO.RegisterRequest request) {
+    public ResponseEntity<UserDTO> register(@Valid @RequestBody AuthDTO.RegisterRequest request) {
         User createdUser = userService.register(request);
 
         UserDTO response = new UserDTO(
                 createdUser.getUsername(),
+                createdUser.getEmail(),
                 createdUser.getPassword(),
                 createdUser.getRole()
         );
@@ -42,7 +44,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDTO> login(@RequestBody AuthDTO.AuthRequest request) {
+    public ResponseEntity<TokenDTO> login(@RequestBody AuthDTO.LoginRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.username(),

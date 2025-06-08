@@ -5,11 +5,13 @@ import com.atividade.prova_jwt.enums.UserRoles;
 public class UserDTO {
 
     private String username;
+    private String email;
     private String password;
     private UserRoles role;
 
-    public UserDTO(String username, String password, UserRoles role) {
+    public UserDTO(String username, String email, String password, UserRoles role) {
         this.username = username;
+        this.email = email;
         this.password = password;
         this.role = role;
     }
@@ -24,5 +26,9 @@ public class UserDTO {
 
     public UserRoles getRole() {
         return role;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
