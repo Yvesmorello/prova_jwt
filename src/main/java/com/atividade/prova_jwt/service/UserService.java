@@ -1,5 +1,6 @@
 package com.atividade.prova_jwt.service;
 
+import com.atividade.prova_jwt.dto.AuthDTO;
 import com.atividade.prova_jwt.model.User;
 import com.atividade.prova_jwt.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -15,8 +16,8 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository repository;
-    //@Autowired
-    //private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -25,11 +26,11 @@ public class UserService implements UserDetailsService {
         return newUser;
     }
 
-    /*public User register(AuthDTO.RegisterRequest request) {
+    public User register(AuthDTO.RegisterRequest request) {
         User newUser = new User();
         newUser.setUsername(request.username());
         newUser.setPassword(passwordEncoder.encode(request.password()));
         newUser.setRole(request.role());
         return repository.save(newUser);
-    }*/
+    }
 }
