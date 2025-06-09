@@ -25,4 +25,5 @@ public class AuthDTO {
             @NotNull(message = "Role é obrigatória")
             UserRoles role
     ) {}
+
 }
